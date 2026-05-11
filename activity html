@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Student Registration Form</title>
@@ -39,9 +39,9 @@
     <br><br>
 
     Hobbies:<br>
-    <input type="checkbox" value="Gaming"> Gaming
-    <input type="checkbox" value="Music"> Music
-    <input type="checkbox" value="Sports"> Sports
+    <input type="checkbox" value="Gaming" class="hobby"> Gaming
+    <input type="checkbox" value="Music" class="hobby"> Music
+    <input type="checkbox" value="Sports" class="hobby"> Sports
     <br><br>
 
     Message:<br>
@@ -58,7 +58,6 @@
 
 <script>
 document.getElementById("myForm").addEventListener("submit", function(event) {
-
     event.preventDefault();
 
     let name = document.getElementById("name").value;
@@ -69,20 +68,22 @@ document.getElementById("myForm").addEventListener("submit", function(event) {
 
     let gender = document.querySelector('input[name="gender"]:checked');
 
+    let hobbies = [];
+    document.querySelectorAll(".hobby:checked").forEach(h => {
+        hobbies.push(h.value);
+    });
+
     let output = `
         Name: ${name} <br>
         Email: ${email} <br>
         Age: ${age} <br>
         Course: ${course} <br>
-        Message: ${message} <br>
+        Gender: ${gender ? gender.value : ""} <br>
+        Hobbies: ${hobbies.join(", ")} <br>
+        Message: ${message}
     `;
 
-    if(gender){
-        output += Gender: ${gender.value};
-    }
-
     document.getElementById("output").innerHTML = output;
-
 });
 </script>
 
